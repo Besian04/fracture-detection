@@ -8,8 +8,19 @@ Für Die Breeeeessss:
 
 ```
 git clone https://github.com/DEIN-USERNAME/fracture_detection.git
+
 cd fracture_detection
+
+# Setup ausführen
+
 bash setup.sh
+
+# Virtuelle Umgebung aktivieren
+
+source .venv/bin/activate
+
+# Web-App starten
+
 python app.py
 ```
 
