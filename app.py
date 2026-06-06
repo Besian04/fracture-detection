@@ -18,7 +18,7 @@ from PIL import Image
 from torchvision import transforms
 
 # Projektpfad
-PROJECT_DIR = "/Users/besian/Downloads/fracture_detection"
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, PROJECT_DIR)
 
 from models.cnn_model import FractureCNN

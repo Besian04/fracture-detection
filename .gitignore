@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Daten (zu groß für GitHub)
+data/
+
+# Modell-Gewichte (via Git LFS)
+*.pth
+
+# Ergebnisse (Plots werden lokal generiert)
+results/*.png
+
+# macOS
+.DS_Store
+.AppleDouble
+
+# PyCharm
+.idea/
+*.iml
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log

@@ -1,0 +1,19 @@
+#!/bin/bash
+# Setup-Script für Kollegen
+echo "🩻 FractureAI - Setup"
+
+# 1. Virtual Environment erstellen
+python3 -m venv .venv
+source .venv/bin/activate
+
+# 2. Dependencies installieren
+pip install --upgrade pip
+pip install -r requirements.txt
+
+# 3. Git LFS Modelle holen (falls noch nicht da)
+git lfs pull
+
+echo ""
+echo "✅ Setup fertig!"
+echo "👉 Starte die App mit: python app.py"
+echo "👉 Öffne im Browser:   http://localhost:5000"
