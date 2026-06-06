@@ -4,6 +4,17 @@ Automatische Erkennung von Knochenfrakturen in Röntgenbildern mittels CNN und T
 
 ---
 
+Für Die Breeeeessss:
+
+```
+git clone https://github.com/DEIN-USERNAME/fracture_detection.git
+cd fracture_detection
+bash setup.sh
+python app.py
+```
+
+---
+
 ## Projektstruktur
 
 ```
