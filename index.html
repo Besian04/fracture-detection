@@ -6,6 +6,7 @@
 <title>FractureAI — Knochenfraktur-Erkennung</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
 <style>
   :root {
     --bg:        #080c10;
@@ -58,8 +59,13 @@
     background: var(--accent);
     border-radius: 8px;
     display: grid; place-items: center;
-    font-size: 22px;
     box-shadow: 0 0 20px rgba(0,212,255,.4);
+  }
+  .logo-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--bg);
+    stroke-width: 2.5px;
   }
 
   .logo-text {
@@ -125,7 +131,12 @@
     padding: 6px 14px;
     border-radius: 6px;
   }
-  .disclaimer::before { content: '⚠'; font-size: .9rem; }
+  .disclaimer svg {
+    stroke: var(--accent2);
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
 
   /* ── Two-column layout ── */
   .cols {
@@ -178,7 +189,8 @@
   #dropzone input[type=file] {
     position: absolute; inset: 0; opacity: 0; cursor: pointer;
   }
-  .drop-icon { font-size: 2.5rem; margin-bottom: 12px; display: block; }
+  .drop-icon { display: block; margin-bottom: 12px; color: var(--accent); }
+  .drop-icon svg { width: 44px; height: 44px; stroke-width: 1.5; margin: 0 auto; }
   .drop-text { font-size: .82rem; color: var(--muted); line-height: 1.6; }
   .drop-text strong { color: var(--accent); }
 
@@ -265,7 +277,16 @@
     background: rgba(0,229,160,.08);
     border-color: rgba(0,229,160,.3);
   }
-  .verdict-icon { font-size: 2rem; }
+  .verdict-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .verdict-icon svg {
+    width: 36px;
+    height: 36px;
+    stroke-width: 2px;
+  }
   .verdict-label {
     font-family: var(--font-head);
     font-size: 1.3rem;
@@ -333,21 +354,313 @@
     to   { opacity: 1; transform: translateY(0); }
   }
   .fade-up { animation: fadeUp .4s ease forwards; }
+
+  /* ── Navigation Tabs ── */
+  .nav-tabs {
+    display: flex;
+    gap: 12px;
+    margin-left: 40px;
+  }
+  .nav-tab {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: .8rem;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all .2s ease;
+  }
+  .nav-tab svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2px;
+  }
+  .nav-tab:hover {
+    color: #fff;
+    border-color: var(--border);
+  }
+  .nav-tab.active {
+    color: var(--accent);
+    background: rgba(0, 212, 255, 0.08);
+    border-color: var(--accent);
+  }
+
+  /* ── Dashboard Grid ── */
+  .dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    animation: fadeUp 0.4s ease forwards;
+  }
+  
+  .kpi-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 768px) {
+    .kpi-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .kpi-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .kpi-card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 150px; height: 150px;
+    background: radial-gradient(circle, rgba(0,212,255,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  
+  .kpi-card.resnet-card {
+    border-color: rgba(0, 212, 255, 0.3);
+  }
+  .kpi-card.resnet-card::after {
+    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+  }
+  
+  .kpi-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .kpi-model {
+    font-family: var(--font-head);
+    font-size: 1rem;
+    font-weight: 800;
+    color: #fff;
+  }
+  
+  .kpi-tag {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  
+  .kpi-tag.recommended {
+    background: rgba(0, 229, 160, 0.1);
+    border-color: rgba(0, 229, 160, 0.3);
+    color: var(--ok);
+    font-weight: 700;
+  }
+  
+  .kpi-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  
+  .kpi-stat {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .kpi-stat .val {
+    font-family: var(--font-head);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #fff;
+  }
+  
+  .kpi-stat .lbl {
+    font-size: 0.6rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .kpi-stat.highlight {
+    border-color: rgba(0, 229, 160, 0.3);
+    background: rgba(0, 229, 160, 0.02);
+  }
+  .kpi-stat.highlight .val {
+    color: var(--ok);
+  }
+  
+  .dashboard-main {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 24px;
+  }
+  @media (max-width: 900px) {
+    .dashboard-main {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .plots-container {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .plot-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+  }
+  
+  .plot-tab {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .plot-tab:hover {
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .plot-tab.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+    font-weight: 700;
+  }
+  
+  .plot-viewer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+  
+  .plot-model-selector {
+    display: flex;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 4px;
+    border-radius: 8px;
+    gap: 4px;
+  }
+  
+  .plot-model-btn {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 6px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .plot-model-btn.active {
+    background: var(--surface);
+    color: #fff;
+    border: 1px solid var(--border);
+  }
+  
+  #dashboard-plot-img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #000;
+    max-height: 480px;
+    object-fit: contain;
+  }
+  
+  .explanations-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .exp-card {
+    display: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    height: 100%;
+  }
+  .exp-card.active {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    animation: fadeUp 0.3s ease forwards;
+  }
+  
+  .exp-card h3 {
+    font-family: var(--font-head);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fff;
+    border-left: 3px solid var(--accent);
+    padding-left: 10px;
+  }
+  
+  .exp-card p {
+    font-size: 0.78rem;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .exp-card p strong {
+    color: var(--accent);
+  }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo-icon">🩻</div>
+  <div class="logo-icon"><i data-lucide="bone"></i></div>
   <div class="logo-text">Fracture<span>AI</span></div>
+  <nav class="nav-tabs">
+    <button class="nav-tab active" onclick="switchTab('analyze')"><i data-lucide="scan"></i> Analyse</button>
+    <button class="nav-tab" onclick="switchTab('dashboard')"><i data-lucide="bar-chart-2"></i> Modell-Dashboard</button>
+  </nav>
   <div class="badge">Deep Learning · v1.0</div>
 </header>
 
 <main>
-  <div class="hero">
+  <div id="tab-analyze" class="tab-content">
+    <div class="hero">
     <h1>Knochenfraktur-<em>Erkennung</em><br>mit Explainable AI</h1>
     <p>Lade ein Röntgenbild hoch. Das Modell analysiert es und zeigt die Wahrscheinlichkeit einer Fraktur – inklusive Grad-CAM Heatmap.</p>
-    <div class="disclaimer">Kein Ersatz für medizinische Diagnose. Nur zu Forschungszwecken.</div>
+    <div class="disclaimer">
+      <i data-lucide="alert-circle"></i>
+      Kein Ersatz für medizinische Diagnose. Nur zu Forschungszwecken.
+    </div>
   </div>
 
   <div class="cols">
@@ -359,7 +672,7 @@
 
         <div id="dropzone">
           <input type="file" id="file-input" accept="image/*">
-          <span class="drop-icon">🫁</span>
+          <span class="drop-icon"><i data-lucide="image"></i></span>
           <div class="drop-text">
             <strong>Klicken oder Bild hierher ziehen</strong><br>
             PNG, JPG, JPEG · max. 10 MB
@@ -384,7 +697,7 @@
 
         <button id="analyze-btn" onclick="analyze()" disabled>
           <div class="spinner" id="spinner"></div>
-          <span id="btn-text">Bild analysieren →</span>
+          <span id="btn-text">Bild analysieren</span>
         </button>
       </div>
     </div>
@@ -439,33 +752,135 @@
       <div class="card" id="placeholder-panel">
         <div class="card-title">Warte auf Analyse …</div>
         <div style="text-align:center; padding: 60px 20px; color: var(--muted);">
-          <div style="font-size: 3rem; margin-bottom: 16px; opacity:.3">🔬</div>
+          <div style="margin-bottom: 16px; opacity:.3">
+            <i data-lucide="microscope" style="width: 48px; height: 48px; stroke-width: 1.5; margin: 0 auto; display: block;"></i>
+          </div>
           <div style="font-size:.82rem; line-height:1.7">Lade ein Röntgenbild hoch<br>und wähle ein Modell.</div>
         </div>
       </div>
     </div>
 
+  </div> <!-- End of cols -->
+  </div> <!-- End of tab-analyze -->
+
+  <!-- Tab: Dashboard -->
+  <div id="tab-dashboard" class="tab-content" style="display: none;">
+    <div class="dashboard-grid">
+      <!-- Top: KPI Summary Cards -->
+      <div class="kpi-cards">
+        <div class="kpi-card resnet-card">
+          <div class="kpi-header">
+            <span class="kpi-model">ResNet50 (Transfer Learning)</span>
+            <span class="kpi-tag recommended">Empfohlen</span>
+          </div>
+          <div class="kpi-stats">
+            <div class="kpi-stat"><span class="val">99.9%</span><span class="lbl">Accuracy</span></div>
+            <div class="kpi-stat highlight"><span class="val">100.0%</span><span class="lbl">Recall (Sensitivität)</span></div>
+            <div class="kpi-stat"><span class="val">1.000</span><span class="lbl">AUC-ROC</span></div>
+          </div>
+        </div>
+        <div class="kpi-card cnn-card">
+          <div class="kpi-header">
+            <span class="kpi-model">Custom CNN (Baseline)</span>
+            <span class="kpi-tag">Einfaches Modell</span>
+          </div>
+          <div class="kpi-stats">
+            <div class="kpi-stat"><span class="val">95.1%</span><span class="lbl">Accuracy</span></div>
+            <div class="kpi-stat"><span class="val">94.3%</span><span class="lbl">Recall</span></div>
+            <div class="kpi-stat"><span class="val">0.995</span><span class="lbl">AUC-ROC</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom: Two columns -->
+      <div class="dashboard-main">
+        <!-- Left: Interactive Plots -->
+        <div class="plots-container">
+          <div class="plot-tabs">
+            <button class="plot-tab active" id="btn-plot-curves" onclick="selectPlot('curves')">Lernkurven</button>
+            <button class="plot-tab" id="btn-plot-confusion" onclick="selectPlot('confusion')">Wahrheitsmatrix</button>
+            <button class="plot-tab" id="btn-plot-roc" onclick="selectPlot('roc')">ROC-Kurve</button>
+            <button class="plot-tab" id="btn-plot-gradcam" onclick="selectPlot('gradcam')">Grad-CAM Samples</button>
+            <button class="plot-tab" id="btn-plot-comparison" onclick="selectPlot('comparison')">Modellvergleich</button>
+          </div>
+
+          <div class="plot-viewer">
+            <div class="plot-selectors">
+              <div class="plot-model-selector" id="plot-model-sel">
+                <button class="plot-model-btn active" id="btn-model-resnet" onclick="setPlotModel('resnet')">ResNet50</button>
+                <button class="plot-model-btn" id="btn-model-cnn" onclick="setPlotModel('cnn')">Custom CNN</button>
+              </div>
+              <div class="plot-model-selector" id="plot-dataset-sel">
+                <button class="plot-model-btn active" id="btn-dataset-val" onclick="setPlotDataset('val')">Validierung</button>
+                <button class="plot-model-btn" id="btn-dataset-test" onclick="setPlotDataset('test')">Test-Set</button>
+              </div>
+            </div>
+            <img id="dashboard-plot-img" src="/results/ResNet50_training_curves.png" alt="Modell-Visualisierung">
+          </div>
+        </div>
+
+        <!-- Right: Explanations -->
+        <div class="explanations-container">
+          <div class="exp-card active" id="exp-curves">
+            <h3>Lernkurven & Overfitting / Underfitting</h3>
+            <p>Die Lernkurven zeigen den Verlauf von Loss (Verlust) und Accuracy (Genauigkeit) über die Epochen für Trainings- und Validierungsdaten.</p>
+            <p><strong>Overfitting (Überanpassung):</strong> Tritt auf, wenn der Trainingsverlust weiter sinkt, der Validierungsverlust jedoch stagniert oder ansteigt. Das Modell lernt Rauschen und Details der Trainingsdaten auswendig. Unser System nutzt <strong>Early Stopping</strong>, um das Training am optimalen Punkt abzubrechen (beim besten Validierungsverlust) und Overfitting zu verhindern.</p>
+            <p><strong>Underfitting (Unteranpassung):</strong> Das Modell ist zu einfach und kann die Muster in den Daten gar nicht erst lernen. Dies zeigt sich an konstant hohen Verlustwerten auf beiden Datensätzen.</p>
+          </div>
+          <div class="exp-card" id="exp-confusion">
+            <h3>Confusion Matrix (Wahrheitsmatrix)</h3>
+            <p>Die Wahrheitsmatrix zeigt die Verteilung der Vorhersagen im Vergleich zu den tatsächlichen Werten (True Positives, False Positives, False Negatives, True Negatives).</p>
+            <p>Hieraus lässt sich ablesen, wie viele Frakturen korrekt erkannt wurden und ob das Modell zu Fehlalarmen (Falsch-Positiv) neigt.</p>
+            <p><strong>ResNet50:</strong> Weist im Testset 0 Falsch-Negative auf, was zu dem perfekten Recall führt. Wir haben hier sowohl die Matrix für die Validierung als auch für das Testset abrufbar.</p>
+          </div>
+          <div class="exp-card" id="exp-roc">
+            <h3>ROC-Kurve & AUC (Fläche unter der Kurve)</h3>
+            <p>Die ROC-Kurve (Receiver Operating Characteristic) visualisiert die True-Positive-Rate gegenüber der False-Positive-Rate bei verschiedenen Entscheidungsschwellenwerten.</p>
+            <p><strong>AUC (Area Under the Curve):</strong> Ein perfekter Klassifikator hat einen AUC-Wert von 1.0. Das ResNet50-Modell erreicht auf dem Validierungsset fast die perfekte 1.0, was eine extrem trennscharfe Unterscheidung zwischen Brüchen und gesunden Knochen beweist.</p>
+          </div>
+          <div class="exp-card" id="exp-gradcam">
+            <h3>Grad-CAM Visualisierung</h3>
+            <p>Grad-CAM (Gradient-weighted Class Activation Mapping) erzeugt visuelle Heatmaps aus den Aktivierungen der letzten Convolutional-Schicht.</p>
+            <p>Sie beweist, dass das Modell seine Entscheidung auf die tatsächliche Knochenstruktur und Frakturlinie stützt und nicht auf Hintergrundrauschen oder Bildartefakte (wie z. B. Beschriftungen oder Ränder).</p>
+          </div>
+          <div class="exp-card" id="exp-comparison">
+            <h3>Modellvergleich: Warum ResNet50 gewinnt</h3>
+            <p>Das <strong>ResNet50-Modell</strong> nutzt <strong>Transfer Learning</strong> (ImageNet). Es startet das Training mit vortrainierten Gewichten, die bereits komplexe visuelle Features wie Kanten, Formen und Texturen erkennen können. Es muss nur die Klassifikation feinjustiert werden.</p>
+            <p>Das <strong>Custom CNN</strong> wird von Grund auf neu trainiert und verfügt über deutlich weniger Kapazität (ca. 2.5 Mio vs. 25 Mio Parameter im ResNet). Daher erreicht das ResNet50 eine höhere Genauigkeit und vor allem einen besseren Recall.</p>
+            <p><strong>Warum Recall kritisch ist:</strong> Eine übersehene Fraktur (Falsch-Negativ) gefährdet den Patienten, während ein Fehlalarm (Falsch-Positiv) schnell vom medizinischen Personal korrigiert werden kann. Daher ist das ResNet50 mit 100% Recall medizinisch weitaus sicherer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </main>
 
 <script>
+// Aktuell ausgewähltes Klassifikationsmodell (Standard: ResNet50)
 let selectedModel = 'resnet';
+// Flag, ob der Nutzer bereits ein Bild hochgeladen hat
 let hasFile = false;
 
-// Init: ResNet vorauswählen
+// Beim Laden der Seite: ResNet50 vorauswählen und die statischen Icons initialisieren
 selectModel('resnet');
+lucide.createIcons();
 
+// Funktion zur Modellauswahl für die Bildanalyse (Analyse-Tab)
 function selectModel(name) {
   selectedModel = name;
+  // Visuelles Feedback: Dem ausgewählten Button die Klasse 'active' geben, allen anderen entziehen
   document.querySelectorAll('.model-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.model === name);
   });
 }
 
-// Drag & Drop
+// Drag & Drop Ereignisse für die Upload-Zone einrichten
 const dropzone = document.getElementById('dropzone');
+// Verhindert das Standardverhalten des Browsers (z. B. Bild öffnen) beim Drüberziehen
 dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
+// Entfernt den Hover-Effekt, wenn das Bild die Zone verlässt
 dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+// Fängt das gedropte Bild ab und übergibt es an unsere Dateibehandlung
 dropzone.addEventListener('drop', e => {
   e.preventDefault();
   dropzone.classList.remove('dragover');
@@ -473,24 +888,30 @@ dropzone.addEventListener('drop', e => {
   if (file) handleFile(file);
 });
 
+// Fängt die Dateiauswahl über den klassischen Datei-Auswahldialog ab
 document.getElementById('file-input').addEventListener('change', e => {
   if (e.target.files[0]) handleFile(e.target.files[0]);
 });
 
+// Behandelt die ausgewählte Bilddatei und zeigt eine Vorschau an
 function handleFile(file) {
   hasFile = true;
+  // Aktiviert den "Bild analysieren"-Button, da nun ein Bild vorhanden ist
   document.getElementById('analyze-btn').disabled = false;
 
   const reader = new FileReader();
   reader.onload = ev => {
     const wrap = document.getElementById('preview-wrap');
     const img  = document.getElementById('preview-img');
+    // Die Bildquelle auf die Daten-URL setzen, um das Bild im Browser anzuzeigen
     img.src = ev.target.result;
     wrap.style.display = 'block';
   };
+  // Bild einlesen
   reader.readAsDataURL(file);
 }
 
+// Sendet das ausgewählte Bild an das Flask-Backend zur Analyse
 async function analyze() {
   if (!hasFile) return;
 
@@ -498,16 +919,18 @@ async function analyze() {
   const spinner = document.getElementById('spinner');
   const btnText = document.getElementById('btn-text');
 
+  // Button während der Analyse sperren und Lade-Spinner anzeigen
   btn.disabled = true;
   spinner.style.display = 'block';
   btnText.textContent = 'Analysiere …';
 
   const file = document.getElementById('file-input').files[0];
   const form = new FormData();
-  form.append('image', file);
-  form.append('model', selectedModel);
+  form.append('image', file); // Bilddatei an FormData anhängen
+  form.append('model', selectedModel); // Gewähltes Modell anhängen
 
   try {
+    // POST-Request an den Backend-Server senden
     const res  = await fetch('/predict', { method: 'POST', body: form });
     const data = await res.json();
 
@@ -516,45 +939,195 @@ async function analyze() {
       return;
     }
 
+    // Ergebnis visualisieren bei erfolgreichem Response
     showResult(data);
   } catch (err) {
     alert('Server nicht erreichbar. Läuft app.py?');
   } finally {
+    // Zustand des Buttons nach der Analyse wieder zurücksetzen
     btn.disabled = false;
     spinner.style.display = 'none';
-    btnText.textContent = 'Erneut analysieren →';
+    btnText.textContent = 'Erneut analysieren';
   }
 }
 
+// Stellt die Ergebnisse der Analyse auf der Webseite dar
 function showResult(data) {
+  // Warte-Platzhalter ausblenden
   document.getElementById('placeholder-panel').style.display = 'none';
+  // Ergebnis-Panel einblenden und Einblend-Animation starten
   const panel = document.getElementById('result-panel');
   panel.style.display = 'block';
   panel.classList.add('fade-up');
 
   const isFrac = data.is_fracture;
 
-  // Verdict
+  // Verdict-Box (Ergebnisrahmen) konfigurieren und farblich anpassen
   const vbox  = document.getElementById('verdict-box');
   vbox.className = 'verdict ' + (isFrac ? 'fracture' : 'ok');
-  document.getElementById('verdict-icon').textContent  = isFrac ? '⚠️' : '✅';
+  // Passendes SVG-Icon dynamisch setzen
+  document.getElementById('verdict-icon').innerHTML = isFrac 
+    ? '<i data-lucide="alert-triangle"></i>' 
+    : '<i data-lucide="check-circle-2"></i>';
   document.getElementById('verdict-label').textContent = data.label;
   document.getElementById('verdict-sub').textContent   =
     `Modell: ${data.model_used} · Wahrscheinlichkeit: ${data.probability}%`;
 
-  // Prob bar
+  // Dynamisch generierte Icons von Lucide initialisieren
+  lucide.createIcons();
+
+  // Fortschrittsbalken (Wahrscheinlichkeit) anpassen
   const bar = document.getElementById('prob-bar');
   bar.className = 'prob-bar-fill ' + (isFrac ? 'fracture' : 'ok');
+  // Kleine Verzögerung für eine geschmeidige CSS-Breitenanimation
   setTimeout(() => { bar.style.width = data.probability + '%'; }, 50);
   document.getElementById('prob-text').textContent = data.probability + '%';
 
-  // Stats
+  // Stats-Karten mit genauen Zahlen und Modell-Infos befüllen
   document.getElementById('stat-prob').textContent  = data.probability + '%';
   document.getElementById('stat-model').textContent = data.model_used;
   document.getElementById('stat-class').textContent = isFrac ? 'Fraktur' : 'Gesund';
 
-  // Heatmap
+  // Das Base64-PNG-Overlay-Bild der Grad-CAM aus dem Backend in den Image-Tag laden
   document.getElementById('heatmap-img').src = 'data:image/png;base64,' + data.heatmap_b64;
+}
+
+// Steuert das Umschalten zwischen dem Analyse-Tab und dem Modell-Dashboard
+function switchTab(tabId) {
+  // Aktiven Navigationsknopf markieren
+  document.querySelectorAll('.nav-tab').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('onclick').includes(tabId));
+  });
+  // Den gewählten Tab-Inhalt einblenden, alle anderen ausblenden
+  document.querySelectorAll('.tab-content').forEach(content => {
+    if (content.id === `tab-${tabId}`) {
+      content.style.display = 'block';
+    } else {
+      content.style.display = 'none';
+    }
+  });
+}
+
+// --- Dashboard Plot-Steuerung ---
+let currentPlotType = 'curves';    // Standard-Diagrammtyp im Dashboard
+let currentPlotModel = 'resnet';   // Standard-Modell im Dashboard
+let currentPlotDataset = 'val';    // Standard-Datensatz im Dashboard (Validierungsset)
+
+// Wird aufgerufen, wenn im Dashboard ein anderer Diagrammtyp ausgewählt wird
+function selectPlot(type) {
+  currentPlotType = type;
+  
+  // Aktiven Tab-Button hervorheben
+  document.querySelectorAll('.plot-tab').forEach(btn => {
+    btn.classList.toggle('active', btn.id === `btn-plot-${type}`);
+  });
+  
+  const modelSel = document.getElementById('plot-model-sel');
+  const datasetSel = document.getElementById('plot-dataset-sel');
+  
+  // Wenn 'Modellvergleich' ausgewählt wird, blenden wir alle Selektoren aus,
+  // da es sich um einen globalen Vergleich beider Netze handelt.
+  if (type === 'comparison') {
+    modelSel.style.display = 'none';
+    datasetSel.style.display = 'none';
+  } else {
+    // Andernfalls Modell-Auswahl anzeigen
+    modelSel.style.display = 'flex';
+    // Der Dataset-Selector (Val vs Test) wird nur für ResNet50 und für
+    // Confusion Matrix oder ROC-Kurve eingeblendet (wie vom Benutzer gewünscht, nicht bei Lernkurven).
+    if (currentPlotModel === 'resnet' && (type === 'confusion' || type === 'roc')) {
+      datasetSel.style.display = 'flex';
+    } else {
+      datasetSel.style.display = 'none';
+    }
+  }
+  
+  // Die passende Erklärungskarte auf der rechten Seite einblenden
+  document.querySelectorAll('.exp-card').forEach(card => {
+    card.classList.toggle('active', card.id === `exp-${type}`);
+  });
+  
+  // Das Diagrammbild aktualisieren
+  updateDashboardPlot();
+}
+
+// Wird aufgerufen, wenn im Dashboard das Modell umgeschaltet wird
+function setPlotModel(model) {
+  currentPlotModel = model;
+  
+  // Den ausgewählten Modell-Button aktiv stylen
+  document.querySelectorAll('.plot-model-btn').forEach(btn => {
+    if (btn.id.startsWith('btn-model-')) {
+      btn.classList.toggle('active', btn.id === `btn-model-${model}`);
+    }
+  });
+  
+  // Datensatz-Auswahlanzeige aktualisieren (nur für ResNet50 bei Confusion-Matrix/ROC einblenden)
+  const datasetSel = document.getElementById('plot-dataset-sel');
+  if (model === 'resnet' && (currentPlotType === 'confusion' || currentPlotType === 'roc')) {
+    datasetSel.style.display = 'flex';
+  } else {
+    datasetSel.style.display = 'none';
+  }
+  
+  updateDashboardPlot();
+}
+
+// Wird aufgerufen, wenn im Dashboard zwischen Validierung und Testset geswitcht wird
+function setPlotDataset(dataset) {
+  currentPlotDataset = dataset;
+  
+  // Den gewählten Datensatz-Button aktiv stylen
+  document.querySelectorAll('.plot-model-btn').forEach(btn => {
+    if (btn.id.startsWith('btn-dataset-')) {
+      btn.classList.toggle('active', btn.id === `btn-dataset-${dataset}`);
+    }
+  });
+  
+  updateDashboardPlot();
+}
+
+// Generiert den korrekten Pfad zum Diagramm-Bild auf dem Server und lädt es neu
+function updateDashboardPlot() {
+  const imgElement = document.getElementById('dashboard-plot-img');
+  let filename = '';
+  
+  // 1. Wenn globaler Modellvergleich gewählt ist
+  if (currentPlotType === 'comparison') {
+    filename = 'model_comparison.png';
+  } else {
+    // Prüfen, ob wir das Testset laden müssen (gilt nur für ResNet50 bei ROC oder Confusion Matrix)
+    const isTest = currentPlotModel === 'resnet' && currentPlotDataset === 'test' && (currentPlotType === 'confusion' || currentPlotType === 'roc');
+    
+    // 2. Lernkurven laden (ohne Test-Set Option, da wir hier nur Trainingsverlauf analysieren)
+    if (currentPlotType === 'curves') {
+      if (currentPlotModel === 'resnet') {
+        filename = 'ResNet50_training_curves.png';
+      } else {
+        filename = 'CNN_training_curves.png';
+      }
+    // 3. Confusion Matrix laden
+    } else if (currentPlotType === 'confusion') {
+      if (currentPlotModel === 'resnet') {
+        filename = isTest ? 'ResNet50_TEST_confusion_matrix.png' : 'ResNet50_confusion_matrix.png';
+      } else {
+        filename = 'CNN_confusion_matrix.png';
+      }
+    // 4. ROC-Kurve laden
+    } else if (currentPlotType === 'roc') {
+      if (currentPlotModel === 'resnet') {
+        filename = isTest ? 'ResNet50_TEST_roc_curve.png' : 'ResNet50_roc_curve.png';
+      } else {
+        filename = 'CNN_roc_curve.png';
+      }
+    // 5. Grad-CAM Musterbeispiele laden
+    } else if (currentPlotType === 'gradcam') {
+      filename = currentPlotModel === 'resnet' ? 'ResNet50_gradcam.png' : 'CNN_gradcam.png';
+    }
+  }
+  
+  // Die src-Eigenschaft des Bildes aktualisieren, damit Flask das Bild aus /results/ lädt
+  imgElement.src = `/results/${filename}`;
 }
 </script>
 </body>

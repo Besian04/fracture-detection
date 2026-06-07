@@ -1,4 +1,4 @@
-# 🩻 Knochenfraktur-Erkennung mit Deep Learning
+# Knochenfraktur-Erkennung mit Deep Learning
 
 Automatische Erkennung von Knochenfrakturen in Röntgenbildern mittels CNN und Transfer Learning.
 
@@ -139,7 +139,7 @@ Vortrainiertes ResNet50 (ImageNet), angepasst für Frakturerkennung:
 | F1-Score       | Harmonisches Mittel aus Precision & Recall        |
 | AUC-ROC        | Fläche unter der ROC-Kurve                        |
 
-> ⚠️ **Recall** ist die wichtigste Metrik: Eine übersehene Fraktur ist gefährlicher als ein Falsch-Positiv.
+> **Recall** ist die wichtigste Metrik: Eine übersehene Fraktur ist gefährlicher als ein Falsch-Positiv.
 
 ---
 
