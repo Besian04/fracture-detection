@@ -1,5 +1,5 @@
 # gradcam.py
-# ----------
+
 # Hier implementieren wir Grad-CAM (Gradient-weighted Class Activation Mapping).
 # Diese Methode visualisiert die internen Entscheidungswege unseres Netzes.
 # Sie erzeugt farbige Heatmaps, um zu beweisen, worauf das Modell beim Röntgenbild geschaut hat.

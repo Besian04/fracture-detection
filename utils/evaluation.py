@@ -1,5 +1,5 @@
 # evaluation.py
-# -------------
+
 # In dieser Datei werten wir die Leistung unserer Netze statistisch und visuell aus.
 # Wir berechnen die Standardmetriken (Accuracy, Precision, Recall, F1)
 # und zeichnen Plots wie die Confusion Matrix, die ROC-Kurve und die Loss/Acc Lernkurven.

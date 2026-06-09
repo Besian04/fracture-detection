@@ -1,5 +1,5 @@
 # trainer.py
-# ----------
+
 # In dieser Datei steuert die eigentliche Trainingsschleife das Training der Netze.
 # Außerdem implementieren wir hier ein "Early Stopping", um Overfitting abzufangen,
 # und steuern das dynamische Senken der Lernrate (LR Scheduling).

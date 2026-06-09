@@ -1,5 +1,5 @@
 # transfer_model.py
-# -----------------
+
 # Unser fortschrittlicheres Modell 2 auf Basis von Transfer Learning.
 # Wir verwenden das bewährte ResNet50-Modell, das auf ImageNet vortrainiert wurde.
 # Dadurch müssen wir nicht bei Null anfangen, sondern nutzen bereits gelernte visuelle Konzepte.

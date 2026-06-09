@@ -1,5 +1,5 @@
 # cnn_model.py
-# ------------
+
 # Hier definieren wir unser erstes, selbstgebautes CNN-Modell (Modell 1).
 # Es dient als Baseline-Modell, um eine solide Grundlage für den Vergleich zu haben.
 # Wir setzen auf eine klassische Struktur: Faltungsblöcke zur Feature-Extraktion,

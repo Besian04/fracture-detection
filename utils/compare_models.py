@@ -1,5 +1,5 @@
 # compare_models.py
-# -----------------
+
 # In dieser Datei vergleichen wir unsere beiden trainierten Modelle
 # (das selbstgebaute CNN und das ResNet50 Transfer-Learning-Modell)
 # direkt anhand aller Leistungswerte und erzeugen ein vergleichendes Balkendiagramm.

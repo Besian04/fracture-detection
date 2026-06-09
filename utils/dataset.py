@@ -1,5 +1,5 @@
 # dataset.py
-# ----------
+
 # In dieser Datei strukturieren und laden wir unsere Röntgenbilder.
 # Wir transformieren die Bilddaten so, dass sie für die neuronalen Netze optimal lesbar sind
 # und führen Datenaugmentation durch, um Overfitting zu reduzieren.
@@ -16,9 +16,7 @@ from torch.utils.data import DataLoader, random_split
 from torchvision import datasets, transforms
 
 
-# ---------------------------------------------------------------------------
 # Bildtransformationen (Transforms) und Datenaugmentation
-# ---------------------------------------------------------------------------
 
 # Datenerweiterung (Augmentation) für die Trainingsdaten:
 # Wir verändern die Bilder leicht bei jedem Laden, damit das Modell robustere Merkmale lernt
@@ -54,9 +52,7 @@ VAL_TRANSFORMS = transforms.Compose([
 ])
 
 
-# ---------------------------------------------------------------------------
 # DataLoader-Fabrik
-# ---------------------------------------------------------------------------
 
 def get_dataloaders(data_dir: str, batch_size: int = 32, val_split: float = 0.2,
                     num_workers: int = 2):

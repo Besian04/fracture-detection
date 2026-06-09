@@ -31,9 +31,8 @@ from models.transfer_model import FractureResNet
 # Flask-App initialisieren. Wir setzen das Template-Verzeichnis direkt auf das Projektverzeichnis.
 app = Flask(__name__, template_folder=PROJECT_DIR)
 
-# ---------------------------------------------------------------------------
 # Bildvorverarbeitung (Transforms)
-# ---------------------------------------------------------------------------
+
 # Jedes hochgeladene Röntgenbild muss exakt so vorverarbeitet werden, wie es beim Training der Fall war.
 TRANSFORM = transforms.Compose([
     # Bildgröße auf 224x224 Pixel anpassen (Standardeingangsgröße für ResNet)
@@ -76,9 +75,8 @@ RESNET_MODEL = load_model(FractureResNet, os.path.join(RESULTS_DIR, "ResNet50_be
 print("[App]  Bereit.\n")
 
 
-# ---------------------------------------------------------------------------
 # Grad-CAM (Gradient-weighted Class Activation Mapping)
-# ---------------------------------------------------------------------------
+
 # Diese Klasse implementiert die Erklärbarkeits-Methode Grad-CAM.
 # Sie zeigt uns als Heatmap, welche Pixel das Modell für seine Entscheidung herangezogen hat.
 class GradCAM:
@@ -143,9 +141,8 @@ def get_cam_layer(model_name):
     return None, None
 
 
-# ---------------------------------------------------------------------------
 # Heatmap-Erzeugung und Konvertierung in Base64-String zur Web-Darstellung
-# ---------------------------------------------------------------------------
+
 import matplotlib
 matplotlib.use("Agg") # Verhindert GUI-Probleme im Flask-Hintergrundthread
 import matplotlib.cm as cm
@@ -189,9 +186,8 @@ def heatmap_to_base64(orig_pil, heatmap):
     return base64.b64encode(buf.read()).decode()
 
 
-# ---------------------------------------------------------------------------
 # Server-Routen
-# ---------------------------------------------------------------------------
+
 from flask import send_from_directory
 
 
