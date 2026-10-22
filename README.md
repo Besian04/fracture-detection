@@ -1,4 +1,4 @@
-# Knochenfraktur-Erkennung mit Deep Learning
+# FractureAI – Knochenfraktur-Erkennung mit Deep Learning
 
 Automatische Erkennung von Knochenfrakturen in Röntgenbildern mittels CNN und Transfer Learning.
 
