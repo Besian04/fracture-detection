@@ -4,33 +4,42 @@ Automatische Erkennung von Knochenfrakturen in Röntgenbildern mittels CNN und T
 
 ---
 
-Für Das Clonen:
+**FractureAI** vergleicht ein eigenes CNN mit einem ResNet50 (Transfer Learning), macht die Entscheidungen der Modelle mit Grad-CAM sichtbar und stellt alles in einer Web-App bereit: Röntgenbild hochladen, Vorhersage samt Heatmap erhalten.
 
-```
-git clone https://github.com/DEIN-USERNAME/fracture_detection.git
+> Entstanden als Studienprojekt im Fach Advanced AI an der Hochschule Campus Wien. Kein Medizinprodukt.
 
-cd fracture_detection
+---
 
-# Setup ausführen
+## Web-App starten
 
+```bash
+git clone https://github.com/Besian04/fracture-detection.git
+cd fracture-detection
+
+# Setup ausführen (virtuelle Umgebung, Dependencies, Modelle via Git LFS)
 bash setup.sh
 
 # Virtuelle Umgebung aktivieren
-
 source .venv/bin/activate
 
 # Web-App starten
-
 python app.py
 ```
+
+Danach im Browser http://localhost:5000 öffnen.
+
+> Die trainierten Modelle liegen per **Git LFS** im Ordner `results/`. Falls `git lfs` fehlt: `brew install git-lfs` bzw. `sudo apt install git-lfs`, danach `git lfs install && git lfs pull`.
 
 ---
 
 ## Projektstruktur
 
 ```
-fracture_detection/
+fracture-detection/
 ├── main.py                   # Hauptskript (gesamte Pipeline)
+├── app.py                    # Flask-Web-App (Upload, Vorhersage, Grad-CAM)
+├── index.html                # Frontend der Web-App
+├── setup.sh                  # Setup-Skript
 ├── requirements.txt
 ├── models/
 │   ├── cnn_model.py          # Modell 1: Custom CNN (Baseline)
@@ -191,3 +200,4 @@ Original Röntgenbild → Grad-CAM Heatmap → Überlagerung
 - **scikit-learn** – Metriken, Confusion Matrix
 - **matplotlib** – Visualisierungen
 - **Pillow** – Bildverarbeitung
+- **Flask** – Web-App
